@@ -122,7 +122,6 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-<<<<<<< Updated upstream
   m_NavMeshData: {fileID: 0}
 --- !u!1001 &6362924
 PrefabInstance:
@@ -181,9 +180,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa99a810914c5b84b9bc5d51f95dd05c, type: 3}
-=======
-  m_NavMeshData: {fileID: 23800000, guid: f450b497be372624ba2f734a1bdb50ad, type: 2}
->>>>>>> Stashed changes
 --- !u!1 &6833442 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1076262714343606, guid: 68cbfa1438162b243ac02fb9e3e30581, type: 3}
@@ -5695,7 +5691,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 49f2ecb08a0c38140b335a0a1f7f66f4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68cbfa1438162b243ac02fb9e3e30581, type: 3}
-<<<<<<< Updated upstream
 --- !u!1001 &320917966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5753,13 +5748,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa99a810914c5b84b9bc5d51f95dd05c, type: 3}
-=======
---- !u!1 &322212382 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1919012471076396, guid: 55776efecb0cd134ea5f418c2f97a705, type: 3}
-  m_PrefabInstance: {fileID: 1002325972}
-  m_PrefabAsset: {fileID: 0}
->>>>>>> Stashed changes
 --- !u!1001 &322826370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18416,56 +18404,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4023215848608658, guid: 55776efecb0cd134ea5f418c2f97a705, type: 3}
   m_PrefabInstance: {fileID: 1002325972}
   m_PrefabAsset: {fileID: 0}
---- !u!195 &1002325975
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322212382}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 10
-  m_Acceleration: 10
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &1002325977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322212382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eb6c8997d112d94db38534fbe996c32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 1002325975}
-  hero: {fileID: 8018214403797856858}
-  isGround:
-    serializedVersion: 2
-    m_Bits: 8
-  isHero:
-    serializedVersion: 2
-    m_Bits: 64
-  health: 120
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 5
-  timeBetweenAttacks: 0.5
-  sightRange: 20
-  attackRange: 12
-  heroInSightRange: 0
-  heroInAttackRange: 0
 --- !u!1001 &1004051239
 PrefabInstance:
   m_ObjectHideFlags: 0
