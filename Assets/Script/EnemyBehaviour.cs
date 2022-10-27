@@ -5,13 +5,15 @@ using System.Data.SqlTypes;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class EnemyBehaviour  : MonoBehaviour
 {
     public NavMeshAgent agent;
 
     public Transform hero;
 
     public LayerMask isGround, isHero;
+
+    public float health;
 
     //Patroling
     public Vector3 walkPoint;
@@ -56,7 +58,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-        //når walkPoint er nået
+        //nï¿½r walkPoint er nï¿½et
         if (distanceToWalkPoint.magnitude < 1f)
         {
             walkPointSet = false;
@@ -80,10 +82,39 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void AttackHero()
     {
-        //for at være sikker på at enemy ikke bevægers sig når den slår
+        //for at vï¿½re sikker pï¿½ at enemy ikke bevï¿½gers sig nï¿½r den slï¿½r
         agent.SetDestination(transform.position);
 
         transform.LookAt(hero);
+
+        if (!alreadyAttacked)
+        {
+            {
+                
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            }
+        }
     }
+    
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0) Invoke(nameof(KillEnemy), 0.5f);
+    
+
+    }
+
+    private void KillEnemy()
+    {
+        Destroy(gameObject);
+    }
+  
 
 }
