@@ -7,20 +7,25 @@ using Random = UnityEngine.Random;
 public class EnemySpawner : MonoBehaviour
 {
     public EnemyScriptableObjects[] enemyScriptableObjects;
-    
+
     private float spawnTimer = 8f;
     private float spawnTime = 8f;
+    private int maxEnemies;
+    private int currentEnemies;
 
     private void Update()
     {
-        // timer
-        spawnTimer -= Time.deltaTime;
-        if (spawnTimer <= 0)
+        if (currentEnemies < maxEnemies)
         {
-            // spawn enemy
-            SpawnEnemy();
-            // reset timer
-            spawnTimer = spawnTime;
+            // timer
+            spawnTimer -= Time.deltaTime;
+            if (spawnTimer <= 0)
+            {
+                // spawn enemy
+                SpawnEnemy();
+                // reset timer
+                spawnTimer = spawnTime;
+            }
         }
     }
 
