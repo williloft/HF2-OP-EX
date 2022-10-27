@@ -58,7 +58,7 @@ public class EnemyBehaviour  : MonoBehaviour
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-        //når walkPoint er nået
+        //nï¿½r walkPoint er nï¿½et
         if (distanceToWalkPoint.magnitude < 1f)
         {
             walkPointSet = false;
@@ -82,7 +82,7 @@ public class EnemyBehaviour  : MonoBehaviour
 
     public void AttackHero()
     {
-        //for at være sikker på at enemy ikke bevægers sig når den slår
+        //for at vï¿½re sikker pï¿½ at enemy ikke bevï¿½gers sig nï¿½r den slï¿½r
         agent.SetDestination(transform.position);
 
         transform.LookAt(hero);
