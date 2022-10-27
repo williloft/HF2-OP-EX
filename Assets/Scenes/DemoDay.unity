@@ -36821,7 +36821,7 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  mouseSensitivity: 0.5
+  mouseSensitivity: 2
   animationC: {fileID: 0}
 --- !u!114 &8491996513654667283
 MonoBehaviour:
@@ -37298,7 +37298,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.972549, g: 0.95686275, b: 0.92941177, a: 0}
+  m_BackGroundColor: {r: 0.7490566, g: 0.966133, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
