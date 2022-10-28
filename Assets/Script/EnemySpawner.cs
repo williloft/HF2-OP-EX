@@ -6,37 +6,28 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public EnemyScriptableObjects[] enemyScriptableObjects;
+    [SerializeField]
+    private GameObject Slime;
+    [SerializeField]
+    private GameObject TurtleShell;
 
-    private float spawnTimer = 8f;
-    private float spawnTime = 8f;
-    private int maxEnemies;
-    private int currentEnemies;
+    [SerializeField]
+    private float slimeSpawnTime = 2f;
+    [SerializeField]
+    private float TutleShellSpawnTime = 2f;
 
-    private void Update()
+    
+    void Start()
     {
-        if (currentEnemies < maxEnemies)
-        {
-            // timer
-            spawnTimer -= Time.deltaTime;
-            if (spawnTimer <= 0)
-            {
-                // spawn enemy
-                SpawnEnemy();
-                // reset timer
-                spawnTimer = spawnTime;
-            }
-        }
+        StartCoroutine(spawnEnemy(slimeSpawnTime, Slime));
+        StartCoroutine(spawnEnemy(TutleShellSpawnTime, TurtleShell));
     }
 
-    // spawner method
-    public void SpawnEnemy()
+    private IEnumerator spawnEnemy(float interval, GameObject monster)
     {
-        // get random enemy
-        int randomEnemy = Random.Range(0, enemyScriptableObjects.Length);
-        // get random position
-        Vector3 randomPosition = new Vector3(Random.Range(-8f, 8f), 0, Random.Range(-8f, 8f));
-        // spawn enemy
-        Instantiate(enemyScriptableObjects[randomEnemy].prefab, randomPosition, Quaternion.identity);
+        yield return new WaitForSeconds(interval);
+        //Instantiate laver et nyt som er "monster" og vecter3'en bestemmer hvor den spawner
+        GameObject newMonster = Instantiate(monster, new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f)), Quaternion.identity);
+        StartCoroutine(spawnEnemy(interval, monster));
     }
 }
