@@ -61832,8 +61832,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Slime: {fileID: 1002325974}
   TurtleShell: {fileID: 782154842}
-  slimeSpawnTime: 2
-  TutleShellSpawnTime: 2
+  slimeSpawnTime: 10
+  TutleShellSpawnTime: 10
 --- !u!4 &1842836907
 Transform:
   m_ObjectHideFlags: 0
