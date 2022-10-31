@@ -36,5 +36,9 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         spawnCount = GameObject.FindGameObjectsWithTag("Monsters").Length;
+        if (spawnCount >= 20) 
+        {
+            StopAllCoroutines();
+        }
     }
 }
