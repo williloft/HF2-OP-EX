@@ -10182,6 +10182,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1774625739149480, guid: 38efdaadbfe1d624bbee439cb02e7661, type: 3}
+      propertyPath: m_TagString
+      value: Monsters
+      objectReference: {fileID: 0}
     - target: {fileID: 1822049695589022, guid: 38efdaadbfe1d624bbee439cb02e7661, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -34334,6 +34338,10 @@ PrefabInstance:
     - target: {fileID: 1919012471076396, guid: 55776efecb0cd134ea5f418c2f97a705, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919012471076396, guid: 55776efecb0cd134ea5f418c2f97a705, type: 3}
+      propertyPath: m_TagString
+      value: Monsters
       objectReference: {fileID: 0}
     - target: {fileID: 1989916952965676, guid: 55776efecb0cd134ea5f418c2f97a705, type: 3}
       propertyPath: m_Layer
@@ -61832,6 +61840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Slime: {fileID: 1002325974}
   TurtleShell: {fileID: 782154842}
+  spawnCount: 0
   slimeSpawnTime: 10
   TutleShellSpawnTime: 10
 --- !u!4 &1842836907
