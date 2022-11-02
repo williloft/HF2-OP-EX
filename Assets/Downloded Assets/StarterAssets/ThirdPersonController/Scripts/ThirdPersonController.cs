@@ -78,8 +78,6 @@ namespace StarterAssets
         
         public float mouseSensitivity = 0.5f;
 
-        public animation animationC;
-
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
