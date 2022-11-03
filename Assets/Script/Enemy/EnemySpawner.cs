@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator spawnEnemy(float interval, GameObject monster)
     {
         yield return new WaitForSeconds(interval);
-        //Instantiate laver et nyt som er "monster" og vecter3'en bestemmer hvor den spawner
+        //Instantiate laver et nyt som er "monster" og vector3'en bestemmer hvor den spawner
         GameObject newMonster = Instantiate(monster, new Vector3(Random.Range(-110f, -120f), 0, Random.Range(-20f, -25f)), Quaternion.identity);
         StartCoroutine(spawnEnemy(interval, monster));
     }

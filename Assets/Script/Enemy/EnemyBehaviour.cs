@@ -1,9 +1,12 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class EnemyBehaviour  : MonoBehaviour
 {
@@ -27,27 +30,25 @@ public class EnemyBehaviour  : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool heroInSightRange, heroInAttackRange;
-
+    
     private void Awake()
     {
         hero = GameObject.Find("Hero").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
-    public void Update()
+    private void FixedUpdate()
     {
-        //checkker om spilleren er i sigte
         heroInSightRange = Physics.CheckSphere(transform.position, sightRange, isHero);
         heroInAttackRange = Physics.CheckSphere(transform.position, attackRange, isHero);
-
+        
+        
         if (!heroInSightRange && !heroInAttackRange) Patroling();
         if (heroInSightRange && !heroInAttackRange) ChaseHero();
         if (heroInSightRange && heroInAttackRange) AttackHero();
-
-
     }
 
-    public void Patroling()
+    private void Patroling()
     {
         if (!walkPointSet) SearchWalkPoint();
 
@@ -75,14 +76,15 @@ public class EnemyBehaviour  : MonoBehaviour
         if (Physics.Raycast(walkPoint, -transform.up, 2f, isGround))
             walkPointSet = true;
     }
-    public void ChaseHero()
+
+    private void ChaseHero()
     {
         agent.SetDestination(hero.position);
     }
 
-    public void AttackHero()
+    private void AttackHero()
     {
-        //for at v�re sikker p� at enemy ikke bev�gers sig n�r den sl�r
+        //for at være sikker på at enemy ikke bevægers sig når den slår
         agent.SetDestination(transform.position);
 
         transform.LookAt(hero);
@@ -115,6 +117,4 @@ public class EnemyBehaviour  : MonoBehaviour
     {
         Destroy(gameObject);
     }
-  
-
 }
