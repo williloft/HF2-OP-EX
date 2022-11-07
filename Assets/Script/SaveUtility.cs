@@ -1,69 +1,67 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using UnityEngine;
 
-public class SaveUtility : MonoBehaviour
+public static class SaveUtility
 {
-    private string path = "unknown";
+    private static string path = Application.persistentDataPath + "/Save.data";
 
-    public Stats player;
-
-    BinaryFormatter converter = new BinaryFormatter();
-
-    private FileStream fileStream;
-
-    private void Awake()
+    static BinaryFormatter converter = new BinaryFormatter();
+    
+    private static PlayerInfo player;
+    
+    private static void Start()
     {
-        path = Application.persistentDataPath + "/Save.data";
-
-        fileStream = new FileStream(path,
-            FileMode.OpenOrCreate,
-            FileAccess.ReadWrite,
-            FileShare.None);
-    }
-
-    private void Start()
-    {
-        LoadStats();
-
         Thread SS = new Thread(UpdateStats);
 
         SS.Start();
+
+        SS.Join();
     }
 
-    private void OnApplicationQuit()
+    private static void OnApplicationQuit()
     {
         Debug.Log("Saving player stats");
 
-        SaveStats();
+        SaveStats(player);
     }
 
-    void UpdateStats()
+    static void UpdateStats()
     {
         Thread.Sleep(1000 * 10);
         Debug.Log("Updated stats");
-        SaveStats();
+        SaveStats(player);
         UpdateStats();
     }
-    
-    void SaveStats()
+
+    public static void SaveStats(PlayerInfo player)
     {
-        using(var fs = new FileStream(path, FileMode.OpenOrCreate))
-        {
-            converter.Serialize(fs, player);
-        }
-    }
-    
-    void LoadStats()
-    {
-        using(var fs = new FileStream(path, FileMode.OpenOrCreate))
-        {
-            player = (Stats)converter.Deserialize(fs);
-        }
+        FileStream Stream = new FileStream(path, FileMode.Create);
+        
+        PlayerStats data = new PlayerStats(player);
+        
+        converter.Serialize(Stream, data);
+        Stream.Close();
+        
     }
 
+    public static PlayerStats LoadStats()
+    {
+        if (File.Exists(path))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(path, FileMode.Open);
+            
+            PlayerStats stats = (PlayerStats)bf.Deserialize(file);
+            file.Close();
+
+            return stats;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
 }

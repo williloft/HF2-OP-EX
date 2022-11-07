@@ -6,7 +6,12 @@ using System.IO;
 using System.Threading;
 
 [Serializable]
-public class Stats
+public class PlayerStats : MonoBehaviour
 {
     public int health = 100;
+
+    public PlayerStats(PlayerInfo player)
+    {
+        health = player.health;
+    }
 }
