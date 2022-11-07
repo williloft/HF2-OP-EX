@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -7,12 +8,25 @@ using UnityEngine;
 
 public class SaveUtility : MonoBehaviour
 {
-    string path = "Assets/PlayerStats.dat";
+    private string path = "unknown";
 
     public Stats player;
 
     BinaryFormatter converter = new BinaryFormatter();
 
+    private FileStream fileStream;
+
+    private void Awake()
+    {
+        path = Application.persistentDataPath + "/PlayerStats.data";
+
+        Debug.Log(Application.persistentDataPath);
+        
+        fileStream = new FileStream(path,
+            FileMode.OpenOrCreate,
+            FileAccess.ReadWrite,
+            FileShare.None);
+    }
 
     private void Start()
     {
@@ -41,7 +55,6 @@ public class SaveUtility : MonoBehaviour
     {
         if (File.Exists(path))
         {
-            FileStream fileStream = new FileStream(path, FileMode.Open);
             player = converter.Deserialize(fileStream) as Stats;
 
             fileStream.Close();
@@ -51,10 +64,8 @@ public class SaveUtility : MonoBehaviour
 
     void SaveStats()
     {
-        var fileStream = new FileStream(path, FileMode.Create);
-
         converter.Serialize(fileStream, player);
-
+        Thread.Sleep(1000 * 1);
         fileStream.Close();
     }
 }
