@@ -81045,6 +81045,7 @@ GameObject:
   - component: {fileID: 8491996513654667282}
   - component: {fileID: 8491996513654667285}
   - component: {fileID: 8491996513654667286}
+  - component: {fileID: 8491996513654667287}
   m_Layer: 6
   m_Name: Hero
   m_TagString: Untagged
@@ -81191,6 +81192,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player:
     health: 100
+--- !u!114 &8491996513654667287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491996513654667280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd27ca7d2086b043acf9ef8b002769b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftWeapon: {fileID: 11400000, guid: caf62bd616a609b49859ac39bd0ba4e5, type: 2}
+  rightWeapon: {fileID: 11400000, guid: caf62bd616a609b49859ac39bd0ba4e5, type: 2}
 --- !u!4 &8576728450812312903
 Transform:
   m_ObjectHideFlags: 0
