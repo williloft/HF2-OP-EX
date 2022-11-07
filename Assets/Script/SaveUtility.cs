@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -7,12 +8,23 @@ using UnityEngine;
 
 public class SaveUtility : MonoBehaviour
 {
-    string path = "Assets/PlayerStats.dat";
+    private string path = "unknown";
 
     public Stats player;
 
     BinaryFormatter converter = new BinaryFormatter();
 
+    private FileStream fileStream;
+
+    private void Awake()
+    {
+        path = Application.persistentDataPath + "/Save.data";
+
+        fileStream = new FileStream(path,
+            FileMode.OpenOrCreate,
+            FileAccess.ReadWrite,
+            FileShare.None);
+    }
 
     private void Start()
     {
@@ -35,26 +47,23 @@ public class SaveUtility : MonoBehaviour
         Thread.Sleep(1000 * 10);
         Debug.Log("Updated stats");
         SaveStats();
+        UpdateStats();
     }
-
-    void LoadStats()
-    {
-        if (File.Exists(path))
-        {
-            FileStream fileStream = new FileStream(path, FileMode.Open);
-            player = converter.Deserialize(fileStream) as Stats;
-
-            fileStream.Close();
-        }
-        else Debug.LogError("No save file found");
-    }
-
+    
     void SaveStats()
     {
-        var fileStream = new FileStream(path, FileMode.Create);
-
-        converter.Serialize(fileStream, player);
-
-        fileStream.Close();
+        using(var fs = new FileStream(path, FileMode.OpenOrCreate))
+        {
+            converter.Serialize(fs, player);
+        }
     }
+    
+    void LoadStats()
+    {
+        using(var fs = new FileStream(path, FileMode.OpenOrCreate))
+        {
+            player = (Stats)converter.Deserialize(fs);
+        }
+    }
+
 }
