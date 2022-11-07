@@ -18,10 +18,8 @@ public class SaveUtility : MonoBehaviour
 
     private void Awake()
     {
-        path = Application.persistentDataPath + "/PlayerStats.data";
+        path = Application.persistentDataPath + "/Save.data";
 
-        Debug.Log(Application.persistentDataPath);
-        
         fileStream = new FileStream(path,
             FileMode.OpenOrCreate,
             FileAccess.ReadWrite,
@@ -49,23 +47,23 @@ public class SaveUtility : MonoBehaviour
         Thread.Sleep(1000 * 10);
         Debug.Log("Updated stats");
         SaveStats();
+        UpdateStats();
     }
-
-    void LoadStats()
-    {
-        if (File.Exists(path))
-        {
-            player = converter.Deserialize(fileStream) as Stats;
-
-            fileStream.Close();
-        }
-        else Debug.LogError("No save file found");
-    }
-
+    
     void SaveStats()
     {
-        converter.Serialize(fileStream, player);
-        Thread.Sleep(1000 * 1);
-        fileStream.Close();
+        using(var fs = new FileStream(path, FileMode.OpenOrCreate))
+        {
+            converter.Serialize(fs, player);
+        }
     }
+    
+    void LoadStats()
+    {
+        using(var fs = new FileStream(path, FileMode.OpenOrCreate))
+        {
+            player = (Stats)converter.Deserialize(fs);
+        }
+    }
+
 }
