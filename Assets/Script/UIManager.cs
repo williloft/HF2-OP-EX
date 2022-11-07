@@ -7,7 +7,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private Stats stats;
+    [SerializeField] private PlayerInfo stats;
     [SerializeField] private TextMeshProUGUI healthText;
 
     private void Start()
