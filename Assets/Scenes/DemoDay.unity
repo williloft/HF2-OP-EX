@@ -79596,7 +79596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentOverride: {fileID: 913157904}
-  isLeftHandSlot: 0
+  isLeftHandSlot: 1
   isRightHandSlot: 0
   currentWeaponModel: {fileID: 0}
 --- !u!1 &5632830317916442314
