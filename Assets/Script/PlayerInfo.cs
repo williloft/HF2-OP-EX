@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class PlayerInfo : MonoBehaviour
 {
     public int health = 0;
 
     private void Start()
     {
+        SaveUtility.Start();
         LoadPlayer();
     }
 
@@ -34,8 +36,13 @@ public class PlayerInfo : MonoBehaviour
     {
         var stats = SaveUtility.LoadStats();
 
-        Debug.Log(stats);
-        
         health = stats.health;
+
+        UIManager.UpdateHealth();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveUtility.OnApplicationQuit();
     }
 }

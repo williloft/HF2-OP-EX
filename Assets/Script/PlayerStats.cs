@@ -6,12 +6,15 @@ using System.IO;
 using System.Threading;
 
 [Serializable]
-public class PlayerStats : MonoBehaviour
+public class PlayerStats
 {
     public int health = 100;
 
     public PlayerStats(PlayerInfo player)
     {
         health = player.health;
+
+        Debug.Log("player detected: " + player);
+        Debug.Log("health: " + health);
     }
 }
