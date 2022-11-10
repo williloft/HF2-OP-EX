@@ -8,15 +8,23 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class EnemyBehaviour  : MonoBehaviour
+
+interface IEnemystats
 {
+    public float Health { get; set; }
+}
+    
+public class EnemyBehaviour  : MonoBehaviour, IEnemystats
+{
+    public float Health { get; set; }
+    
     public NavMeshAgent agent;
 
     public Transform hero;
 
     public LayerMask isGround, isHero;
 
-    public float health;
+    
 
     //Patroling
     public Vector3 walkPoint;
@@ -106,9 +114,9 @@ public class EnemyBehaviour  : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        Health -= damage;
 
-        if (health <= 0) Invoke(nameof(KillEnemy), 0.5f);
+        if (Health <= 0) Invoke(nameof(KillEnemy), 0.5f);
     
 
     }

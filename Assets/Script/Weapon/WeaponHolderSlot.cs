@@ -50,12 +50,11 @@ public class WeaponHolderSlot : MonoBehaviour
                 }
                 else
                 {
-                    model.transform.parent = transform; // det her gør vi for at være sikker på at model har samme transform som scripet
+                    model.transform.parent = transform; // det her gør vi for at være sikker på at model er sat til at være child af transform (parent object)
                 }
 
                 model.transform.localPosition = Vector3.zero;
                 model.transform.localRotation = Quaternion.identity;
-                model.transform.localScale = Vector3.one;   
             }
 
             currentWeaponModel = model;
