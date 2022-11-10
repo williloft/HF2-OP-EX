@@ -12,17 +12,18 @@ public static class SaveUtility
     static BinaryFormatter converter = new BinaryFormatter();
 
     private static PlayerInfo player;
+
+    private static Thread SS;
     
     public static void Start()
     {
         path += "\\My Games\\MyGame\\SaveData.dat";
 
-        Thread SS = new Thread(UpdateStats);
+        SS = new Thread(UpdateStats);
 
         SS.Start();
-
-        SS.Join();
     }
+    
 
     public static void OnApplicationQuit()
     {
@@ -38,9 +39,12 @@ public static class SaveUtility
             Thread.Sleep(1000 * 10);
             Debug.Log("Updated stats");
             SaveStats(player);
-
-            if (player == null) return;
+            if(SS.IsAlive == false)
+            {
+                break;
+            }
         }
+        Debug.Log("Thread ended");
     }
 
     public static void SaveStats(PlayerInfo player)
@@ -50,6 +54,8 @@ public static class SaveUtility
             EnsureFolder(path);
             File.SetAttributes(path, FileAttributes.Normal);
             PlayerStats data = new PlayerStats(player);
+            
+            Debug.Log("Is thread alive? " + SS.IsAlive);
 
             converter.Serialize(file, data);
             file.Close();

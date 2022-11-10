@@ -8,7 +8,7 @@ using System.Threading;
 [Serializable]
 public class PlayerStats
 {
-    public int health = 100;
+    public int health;
 
     public PlayerStats(PlayerInfo player)
     {

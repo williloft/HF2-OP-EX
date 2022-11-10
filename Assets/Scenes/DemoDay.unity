@@ -40813,7 +40813,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.85
+  m_fontSize: 46.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -81250,7 +81250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eec0d490c47eb84197bd84fd434b7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 110
+  health: 100
 --- !u!4 &8576728450812312903
 Transform:
   m_ObjectHideFlags: 0
@@ -81652,8 +81652,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8944336655862634455}
-  m_LocalRotation: {x: 0, y: 0.5534924, z: 0, w: 0.8328542}
-  m_LocalPosition: {x: -4.5203695, y: 1.65, z: -28.58356}
+  m_LocalRotation: {x: 0.14424302, y: -0.7162239, z: 0.15538032, w: 0.66488665}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -81691,8 +81691,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.2
-  far clip plane: 500
+  near clip plane: 0.1
+  far clip plane: 5000
   field of view: 40
   orthographic: 0
   orthographic size: 10
