@@ -15,6 +15,7 @@ public static class SaveUtility
 
     private static Thread SS;
     
+    // Kaldes i starten af spillet før alle andre metoder i dette script
     public static void Start()
     {
         path += "\\My Games\\MyGame\\SaveData.dat";
@@ -31,22 +32,20 @@ public static class SaveUtility
 
         SaveStats(player);
     }
+    
+    // Auto save player stats hver gang der er gået 10 minutter
 
     static void UpdateStats()
     {
         while (true)
         {
-            Thread.Sleep(1000 * 10);
+            Thread.Sleep(1000 * 60 * 10);
             Debug.Log("Updated stats");
             SaveStats(player);
-            if(SS.IsAlive == false)
-            {
-                break;
-            }
         }
-        Debug.Log("Thread ended");
     }
 
+    // Kaldes fra et andet script eller metode når spilleren skal gemmes
     public static void SaveStats(PlayerInfo player)
     {
         using (FileStream file = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
@@ -54,14 +53,13 @@ public static class SaveUtility
             EnsureFolder(path);
             File.SetAttributes(path, FileAttributes.Normal);
             PlayerStats data = new PlayerStats(player);
-            
-            Debug.Log("Is thread alive? " + SS.IsAlive);
 
             converter.Serialize(file, data);
             file.Close();
         }
     }
 
+    // Kaldes fra et andet script når man vil load stats
     public static PlayerStats LoadStats()
     {
         if (File.Exists(path))
@@ -77,12 +75,10 @@ public static class SaveUtility
                 return stats;
             }
         }
-        else
-        {
-            Debug.LogError("Save file not found in " + path);
-            return null;
-        }
+        Debug.LogError("Save file blev ikke fundet i " + path);
+        return null;
     }
+    // sikre at mappen eksisterer ellers så laver den en
 
     static void EnsureFolder(string path)
     {
